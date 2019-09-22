@@ -66,9 +66,9 @@ calculate_attack_power_spaceship(Spaceship self){
 int
 is_destroyed_spaceship(Spaceship self){
        //Check if spaceship is destroyed, the battle ends and declares it has been destroyed
-	if(self->health_points <= 0) 
+	if(self->health_points <= 0)
 	{
-		 printf("Spaceship %s has been destroyed \n", self->name);
+		 //printf("Spaceship %s has been destroyed \n", self->name);
 		 return 1;
 	}
 	return 0;
@@ -76,7 +76,7 @@ is_destroyed_spaceship(Spaceship self){
 
 void
 print_spaceship(Spaceship self){
-	printf("%s: %d (HP), %d (AP), %d (DP)\n", self->name, self->health_points, self->attack_points, self->defense_points);
+	//printf("%s: %d (HP), %d (AP), %d (DP)\n", self->name, self->health_points, self->attack_points, self->defense_points);
 }
 
 void

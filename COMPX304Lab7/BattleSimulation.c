@@ -8,7 +8,7 @@
 
 
 int initializeBattle(BattleSimulation battle, int maxRounds, int battleNum){
-	
+
 	printf("\nBattle: %d\n", battleNum);
 	battle->s1 = (Spaceship) malloc(sizeof(Spaceship_struct));
 	if(battle->s1 == NULL){
@@ -32,25 +32,25 @@ int initializeBattle(BattleSimulation battle, int maxRounds, int battleNum){
 
 	while(battle->rounds < battle->maxRounds && battle->battleOver != 1) {
 			attack_spaceship(battle->s1, battle->s2);
-		
+
 			battle->battleOver = is_destroyed_spaceship(battle->s2);
-			if(battle->battleOver == 1) { 
+			if(battle->battleOver == 1) {
 				break;
 			}
 
 			attack_spaceship(battle->s2, battle->s1);
 			battle->battleOver = is_destroyed_spaceship(battle->s1);
 			if(battle->battleOver == 1) {
-				
+
 				break;
-			} 
+			}
 			battle->rounds++;
 	}
 	if(battle->rounds >= battle->maxRounds)
 	{
-		printf("Draw");
+		//printf("Draw");
 	}
-	printf("\nS1 HP: %d \nS2 HP: %d\nRounds: %d\n",battle->s1->health_points, battle->s2->health_points,battle->rounds);
+	//printf("\nS1 HP: %d \nS2 HP: %d\nRounds: %d\n",battle->s1->health_points, battle->s2->health_points,battle->rounds);
 }
 
 void

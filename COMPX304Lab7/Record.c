@@ -1,21 +1,25 @@
-/**
-* @author Panos Patros
-**/
-
 #include <stdio.h>
 #include <stdlib.h>
-#include "Spaceship.h"
+#include "Record.h"
 
-int
-init_record(BattleSimulation sim, Record self){
-	
-
-	return 0;
+int initializeRecord(Record self, BattleSimulation sim, int s1Hp, int s2Hp){
+    self->sim = sim;
+    self->s1Health = s1Hp;
+    self->s2Health = s2Hp;
 }
 
-int
-storeRecord(Spaceship s1, Spaceship s2, int rounds){
-	
+int addResult(Record self, BattleSimulation sim, char result, int rounds){
+    self->sim = sim;
+    self->result = result;
+    self->roundsLasted = rounds;
+}
 
-	return 0;
+void setNextValue(Record r1, Record r2){
+    r1->next = r2;
+    printf("\n Next location: %p from %p", r1->next, r1);
+}
+
+void free_record(Record self){
+    free_battlesim(self->sim);
+	free(self);
 }
