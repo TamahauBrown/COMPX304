@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include "Record.h"
 
-int initializeRecord(Record self, BattleSimulation sim, int s1Hp, int s2Hp){
+int initializeRecord(Record self, BattleSimulation sim, Spaceship s1, Spaceship s2){
+    //printf("1");
     self->sim = sim;
-    printf("1"); fflush(stdout);
-    self->s1Health = s1Hp;
-    printf("2"); fflush(stdout);
-    self->s2Health = s2Hp;
+    //printf("1"); fflush(stdout);
+    self->s1Health = s1->health_points;
+    //printf("2"); fflush(stdout);
+    self->s2Health = s2->health_points;
 }
 
 int addResult(Record self, BattleSimulation sim, int result, int rounds){
@@ -18,7 +19,7 @@ int addResult(Record self, BattleSimulation sim, int result, int rounds){
 
 void setNextValue(Record r1, Record r2){
     r1->next = r2;
-    printf("Next location: %p from %p\n", r1->next, r1);
+    //printf("Next location: %p from %p\n", r1->next, r1);
 }
 
 void free_record(Record self){

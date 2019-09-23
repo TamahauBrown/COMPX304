@@ -6,10 +6,7 @@
 #include <stdlib.h>
 #include "BattleSimulation.h"
 
-
-int initializeBattle(BattleSimulation battle, int maxRounds, int battleNum){
-
-	printf("\nBattle: %d\n", battleNum);
+int createShips(BattleSimulation battle) {
 	battle->s1 = (Spaceship) malloc(sizeof(Spaceship_struct));
 	if(battle->s1 == NULL){
 		printf("Malloc failed for s1!\n");
@@ -28,7 +25,10 @@ int initializeBattle(BattleSimulation battle, int maxRounds, int battleNum){
 
 	//Create a Borg Cube
 	init_spaceship(battle->s2, "A Borg Cube");
+}
+int initializeBattle(BattleSimulation battle, int maxRounds, int battleNum){
 	battle->maxRounds = maxRounds;
+	printf("\nBattle: %d\n", battleNum);
 
 	while(battle->rounds < battle->maxRounds && battle->battleOver != 1) {
 			attack_spaceship(battle->s1, battle->s2);
@@ -49,9 +49,9 @@ int initializeBattle(BattleSimulation battle, int maxRounds, int battleNum){
 	}
 	if(battle->rounds >= battle->maxRounds)
 	{
-		//printf("Draw");
+		printf("Draw");
 	}
-	//printf("\nS1 HP: %d \nS2 HP: %d\nRounds: %d\n",battle->s1->health_points, battle->s2->health_points,battle->rounds);
+	printf("\nS1 HP: %d \nS2 HP: %d\nRounds: %d\n",battle->s1->health_points, battle->s2->health_points,battle->rounds);
 }
 
 void

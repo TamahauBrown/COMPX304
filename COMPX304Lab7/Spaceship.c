@@ -68,7 +68,7 @@ is_destroyed_spaceship(Spaceship self){
        //Check if spaceship is destroyed, the battle ends and declares it has been destroyed
 	if(self->health_points <= 0)
 	{
-		 //printf("Spaceship %s has been destroyed \n", self->name);
+		 printf("Spaceship %s has been destroyed", self->name);
 		 return 1;
 	}
 	return 0;

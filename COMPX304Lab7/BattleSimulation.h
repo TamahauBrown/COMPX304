@@ -18,4 +18,6 @@ typedef struct BattleSimulation_struct {
 
 int initializeBattle(BattleSimulation battle, int maxRounds, int battleNum);
 
+int createShips();
+
 void free_battlesim(BattleSimulation self);

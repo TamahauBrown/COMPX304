@@ -11,8 +11,9 @@ typedef struct record_struct {
 	int roundsLasted;
 } record_struct;
 
+//int initializeRecord(Record self, BattleSimulation sim, Spaceship s1, Spaceship s2);
 //Makes the first one, make 2nd one null
-int initializeRecord(Record self, BattleSimulation sim, int s1Hp, int s2Hp);
+int initializeRecord(Record self, BattleSimulation sim, Spaceship s1, Spaceship s2);
 
 int addResult(Record self, BattleSimulation sim, int result, int rounds);
 
