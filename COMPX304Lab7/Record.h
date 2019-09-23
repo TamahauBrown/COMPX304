@@ -5,7 +5,7 @@ typedef struct record_struct *Record;
 typedef struct record_struct {
 	Record next;
 	BattleSimulation sim;
-	char result;
+	int result;
 	int s1Health;
 	int s2Health;
 	int roundsLasted;
@@ -14,7 +14,7 @@ typedef struct record_struct {
 //Makes the first one, make 2nd one null
 int initializeRecord(Record self, BattleSimulation sim, int s1Hp, int s2Hp);
 
-int addResult(Record self, BattleSimulation sim, char result, int rounds);
+int addResult(Record self, BattleSimulation sim, int result, int rounds);
 
 void setNextValue(Record r1, Record r2);
 

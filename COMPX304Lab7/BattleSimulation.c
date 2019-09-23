@@ -35,13 +35,14 @@ int initializeBattle(BattleSimulation battle, int maxRounds, int battleNum){
 
 			battle->battleOver = is_destroyed_spaceship(battle->s2);
 			if(battle->battleOver == 1) {
+                battle->winner = 1;
 				break;
 			}
 
 			attack_spaceship(battle->s2, battle->s1);
 			battle->battleOver = is_destroyed_spaceship(battle->s1);
 			if(battle->battleOver == 1) {
-
+                battle->winner = 2;
 				break;
 			}
 			battle->rounds++;
