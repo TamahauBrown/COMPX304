@@ -4,18 +4,21 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Record.h"
+#include "Log.h"
 
 int
 main(){
-    	Record lastRecord;
-	Record currentRecord;	
+    Log log;
+    Record lastRecord;
+	Record currentRecord;
 	int i = 0;
 	while(i < 100) {
 		BattleSimulation battle;
 
 		battle = (BattleSimulation) malloc(sizeof(BattleSimulation_struct));
-        	currentRecord = (Record) malloc(sizeof(record_struct));
+        currentRecord = (Record) malloc(sizeof(record_struct));
+        log = (Log) malloc(sizeof(record_struct));
+
 		//if(i > 0) {*(currentRecord) = *(Record)(currentRecord+i);}
         	//currentRecord = (currentRecord+i);
 		if(battle == NULL){
@@ -23,8 +26,8 @@ main(){
 			return 1;
 		}
 		createShips(battle);
-		initializeRecord(currentRecord, battle, battle->s1,battle->s2);		
-		
+		initializeRecord(currentRecord, battle, battle->s1,battle->s2);
+
 		//Print info
 		//print_spaceship(battle->s1);
 		//print_spaceship(battle->s2);
@@ -39,6 +42,9 @@ main(){
                 	//free_record(lastRecord);
                 	//lastRecord = (Record) malloc(sizeof(record_struct));
 		}
+		else { getRecord(log, currentRecord); }
+
+		displayLogs(log, i);
 
 		lastRecord = currentRecord;
 

@@ -47,11 +47,11 @@ int initializeBattle(BattleSimulation battle, int maxRounds, int battleNum){
 			}
 			battle->rounds++;
 	}
-	if(battle->rounds >= battle->maxRounds)
-	{
-		printf("Draw");
-	}
-	printf("\nS1 HP: %d \nS2 HP: %d\nRounds: %d\n",battle->s1->health_points, battle->s2->health_points,battle->rounds);
+	//if(battle->rounds >= battle->maxRounds)
+	//{
+		//printf("Draw");
+	//}
+	//printf("\n%s HP: %d \n%s HP: %d\nRounds: %d\n",battle->s1->name, battle->s1->health_points, battle->s2->name, battle->s2->health_points,battle->rounds);
 }
 
 void
