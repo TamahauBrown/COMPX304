@@ -15,12 +15,12 @@ int addResult(Record self, BattleSimulation sim, int result, int rounds){
     self->sim = sim;
     self->result = result;
     self->roundsLasted = rounds;
-    printf("Round lasted: %d", self->roundsLasted);
+    printf("Rounds lasted: %d\n", self->roundsLasted);
 }
 
 void printRounds(Record self)
 {
-    printf("Round lasted: %d", self->roundsLasted);
+    printf("Round lasted: %d\n", self->roundsLasted);
 }
 
 void setNextValue(Record r1, Record r2){

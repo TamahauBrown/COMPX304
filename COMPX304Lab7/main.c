@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "Log.h"
 
 int
@@ -12,6 +13,7 @@ main(){
     Record lastRecord;
 	Record currentRecord;
 	int i = 0;
+	srand(time(NULL));
 	log = (Log) malloc(sizeof(record_struct));
 	while(i < 100) {
 		BattleSimulation battle;
@@ -45,10 +47,9 @@ main(){
 		else { getRecord(log, currentRecord); }
 
 		//This method is breaking
-		displayLogs(log, i);
 		lastRecord = currentRecord;
-
-		//free_record(currentRecord);
 		i++;
 	}
+	displayLogs(log, 100);
+	free_log(log);
 }

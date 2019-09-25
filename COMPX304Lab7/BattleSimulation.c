@@ -28,7 +28,7 @@ int createShips(BattleSimulation battle) {
 }
 int initializeBattle(BattleSimulation battle, int maxRounds, int battleNum){
 	battle->maxRounds = maxRounds;
-	printf("\nBattle: %d\n", battleNum);
+	//printf("\nBattle: %d\n", battleNum);
 
 	while(battle->rounds < battle->maxRounds && battle->battleOver != 1) {
 			attack_spaceship(battle->s1, battle->s2);
