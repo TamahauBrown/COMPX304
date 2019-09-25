@@ -12,12 +12,12 @@ main(){
     Record lastRecord;
 	Record currentRecord;
 	int i = 0;
+	log = (Log) malloc(sizeof(record_struct));
 	while(i < 100) {
 		BattleSimulation battle;
 
 		battle = (BattleSimulation) malloc(sizeof(BattleSimulation_struct));
         currentRecord = (Record) malloc(sizeof(record_struct));
-        log = (Log) malloc(sizeof(record_struct));
 
 		//if(i > 0) {*(currentRecord) = *(Record)(currentRecord+i);}
         	//currentRecord = (currentRecord+i);
@@ -44,8 +44,8 @@ main(){
 		}
 		else { getRecord(log, currentRecord); }
 
+		//This method is breaking
 		displayLogs(log, i);
-
 		lastRecord = currentRecord;
 
 		//free_record(currentRecord);

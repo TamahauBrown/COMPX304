@@ -20,3 +20,5 @@ int addResult(Record self, BattleSimulation sim, int result, int rounds);
 void setNextValue(Record r1, Record r2);
 
 void free_record(Record self);
+
+void printRounds(Record self);
