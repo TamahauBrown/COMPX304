@@ -13,6 +13,7 @@ int main() {
 #include <stdlib.h>
 #include <sys/types.h>
 #include <dirent.h>
+#include <string.h>
 
 int
 main(int argc, char *argv[])
@@ -21,31 +22,32 @@ main(int argc, char *argv[])
 DIR *dirp;
 DIR *dir;
 struct dirent* dp;
-dp = (dirent) malloc(sizeof(dirent));
+//dp = (dirent) malloc(sizeof(dirent));
 char buff[1000];
 //strcpy(buff, argv[0]);
 //dir = opendir(buff);
 int errno = 0;
-char name = "";
+char *name = "";
 
     struct stat sb;
 //Segmentation fault
   dirp = opendir(".");
 while (dirp) {
     errno = 0;
-    if ((dp = readdir(dirp)) != NULL) {
-        if (strncmp(dp->d_name, name, 6) == 0) {printf("HI\n");
-            printf("%s", dirp);
-        }
+    if ((dp = readdir(dirp)) != NULL) {printf("HI\n");
+        if (strncmp(dp->d_name, name, 6) == 0) {
+            printf("Directory name: %s\n", dp->d_name);
+        }printf("Directory name: %s\n", dp->d_name);
     } else {
         if (errno == 0) {
-	    printf("%s", dirp);
-            //closedir(dirp);
+	    //printf("%s", dirp);
+            closedir(dirp);
             //return NOT_FOUND;
         }
         //return READ_ERROR;
     //return;
     }
+    //Update dirp to do something else lol
     closedir(dirp);
 }
    if (argc != 2) {
