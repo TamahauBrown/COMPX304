@@ -1,11 +1,3 @@
-/*#include <sys/types.h>
-#include <dirent.h>
-
-int main() {
-	DIR *opendir(const char *name);
-	DIR *fdopendir(int fd);
-}
-*/
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <time.h>
@@ -20,83 +12,71 @@ main(int argc, char *argv[])
 {
 
 DIR *dirp;
+DIR *homeDir;
 DIR *dir;
 struct dirent* dp;
-//dp = (dirent) malloc(sizeof(dirent));
 char buff[1000];
-//strcpy(buff, argv[0]);
-//dir = opendir(buff);
-int errno = 0;
-char *name = "";
+struct stat sb;
+char *name = ".";
+char directory[1000] = "/home/tmmb1/300Level/";
+char *homeLoc = "/home/tmmb1/300Level/";
 
-    struct stat sb;
-//Segmentation fault
-  dirp = opendir(".");
+//Gets all the files in the directory
+dirp = opendir("/home/tmmb1/300Level");
+homeDir = opendir("/home/tmmb1/300Level");
+
+printf("Current files in this directory: \n");
 while (dirp) {
-    errno = 0;
-    if ((dp = readdir(dirp)) != NULL) {printf("HI\n");
-        if (strncmp(dp->d_name, name, 6) == 0) {
-            printf("Directory name: %s\n", dp->d_name);
-        }printf("Directory name: %s\n", dp->d_name);
-    } else {
-        if (errno == 0) {
-	    //printf("%s", dirp);
-            closedir(dirp);
-            //return NOT_FOUND;
-        }
-        //return READ_ERROR;
-    //return;
+    if ((dp = readdir(dirp)) != NULL) {
+        //printf("Directory name: %s\n", dp->d_name);
+	if (strncmp(dp->d_name, name, 1) != 0){ 
+		printf("Directory name: %s\n", dp->d_name);
+		char * str3 = (char *) malloc(1 + strlen(directory)+ strlen(dp->d_name));
+      		strcpy(str3, directory);
+      		strcat(str3, dp->d_name);
+      		printf("%s\n", str3);
+
+		   //Did not input a value for the file
+	   //if (argc != 2) {
+	        //fprintf(stderr, "Usage: %s <pathname>\n", argv[0]);
+	        //exit(EXIT_FAILURE);
+	   //}
+	   //No such file
+	   if (stat(str3, &sb) == -1) {
+	        perror("stat");
+	        exit(EXIT_FAILURE);
+	   }
+	int *lastEdit = ctime(&sb.st_mtime);
+	//Trying to get it to check if last edit was in the last 6 months
+	if(lastEdit < 262800) {
+	   printf("File type:                %s\n", str3);
+	
+	   switch (sb.st_mode & S_IFMT) {
+		    case S_IFBLK:  printf("block device\n");            break;
+		    case S_IFCHR:  printf("character device\n");        break;
+		    case S_IFDIR:  printf("directory\n");               break;
+		    case S_IFIFO:  printf("FIFO/pipe\n");               break;
+		    case S_IFLNK:  printf("symlink\n");                 break;
+		    case S_IFREG:  printf("regular file\n");            break;
+		    case S_IFSOCK: printf("socket\n");                  break;
+		    default:       printf("unknown?\n");                break;
+	    }
+
+	   printf("Last status change:       %s", ctime(&sb.st_ctime));
+	    printf("Last file access:         %s", ctime(&sb.st_atime));
+	    printf("Last file modification:   %s", ctime(&sb.st_mtime));
+
+	   //dirp = opendir(".");
+
+	}
+
+	   //exit(EXIT_SUCCESS);
+	}
     }
-    //Update dirp to do something else lol
-    closedir(dirp);
+    else { break; }
 }
-   if (argc != 2) {
-        fprintf(stderr, "Usage: %s <pathname>\n", argv[0]);
-        exit(EXIT_FAILURE);
-    }
-
-   if (stat(argv[1], &sb) == -1) {
-        perror("stat");
-        exit(EXIT_FAILURE);
-    }
-
-   printf("File type:                ");
-
-   switch (sb.st_mode & S_IFMT) {
-    case S_IFBLK:  printf("block device\n");            break;
-    case S_IFCHR:  printf("character device\n");        break;
-    case S_IFDIR:  printf("directory\n");               break;
-    case S_IFIFO:  printf("FIFO/pipe\n");               break;
-    case S_IFLNK:  printf("symlink\n");                 break;
-    case S_IFREG:  printf("regular file\n");            break;
-    case S_IFSOCK: printf("socket\n");                  break;
-    default:       printf("unknown?\n");                break;
-    }
-
-   printf("I-node number:            %ld\n", (long) sb.st_ino);
-
-   printf("Mode:                     %lo (octal)\n",
-            (unsigned long) sb.st_mode);
-
-   printf("Link count:               %ld\n", (long) sb.st_nlink);
-    printf("Ownership:                UID=%ld   GID=%ld\n",
-            (long) sb.st_uid, (long) sb.st_gid);
-
-   printf("Preferred I/O block size: %ld bytes\n",
-            (long) sb.st_blksize);
-    printf("File size:                %lld bytes\n",
-            (long long) sb.st_size);
-    printf("Blocks allocated:         %lld\n",
-            (long long) sb.st_blocks);
-
-   printf("Last status change:       %s", ctime(&sb.st_ctime));
-    printf("Last file access:         %s", ctime(&sb.st_atime));
-    printf("Last file modification:   %s", ctime(&sb.st_mtime));
-
-   //dirp = opendir(".");
-
-
-
-   exit(EXIT_SUCCESS);
 }
+//closedir(dirp);
+
+
 
