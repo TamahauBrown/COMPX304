@@ -84,7 +84,7 @@ int
 main(int argc, char *argv[])
 {
 printf("Current files in this directory: \n");
-process("/home/tmmb1/300Level/COMPX304");
+process("/home");
 }
 //closedir(dirp);
 
